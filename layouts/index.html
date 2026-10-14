@@ -1,0 +1,15 @@
+{{ define "main" }}
+  <h1>{{ .Title }}</h1>
+  <p class="desc">{{ .Params.description }}</p>
+  {{ .Content }}
+
+  <hr class="divider"></hr>
+
+  <div class="tool-grid">
+    {{ range (site.GetPage "/tools").Pages.ByWeight}}
+      <a class="tool-card" href="{{ .RelPermalink }}">
+        <h3>{{ .Title }}</h3>
+        <p>{{ .Params.description }}</p>
+      </a>
+    {{ end }}
+{{ end }}

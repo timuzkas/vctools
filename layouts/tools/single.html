@@ -1,0 +1,12 @@
+{{ define "main" }}
+  <h1 class="title">{{ .Title }}</h1>
+  <p class="desc">{{ .Params.description }}</p>
+  <hr class="divider"></hr>
+  <section data-tool="{{ .File.ContentBaseName }}">
+    {{ .Content }}
+  </section>
+  {{ with .Resources.Get "tool.js" }}
+    <script type="module" src="{{ .RelPermalink }}"></script>
+  {{ end }}
+  {{ with .Resources.Get "tool.css" }}<link rel="stylesheet" href="{{ .RelPermalink }}">{{ end }}
+{{ end }}
