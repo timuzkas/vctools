@@ -3,7 +3,6 @@ const $ = (s) => root.querySelector(s);
 
 const ORT_BASE = new URL("../../vendor/ort/", import.meta.url).href;
 
-// Each model differs in input size and normalization.
 const HF = "https://huggingface.co/briaai/RMBG-1.4/resolve/2ceba5a5efaec153162aedea169f76caf9b46cf8/onnx/";
 const MODELS = {
   fast: {
@@ -25,7 +24,7 @@ const MODELS = {
 };
 
 let ort;
-const sessions = {}; // cached per model, so switching back is instant
+const sessions = {};
 
 async function loadModel(key) {
   if (!ort) {

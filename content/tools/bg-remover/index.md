@@ -8,8 +8,8 @@ weight: 10
 <div class="controls">
   <input data-in type="file" accept="image/*">
   <select data-model aria-label="Model">
-    <option value="fast">Fast (4 MB model)</option>
     <option value="quality">Quality (44 MB, slower)</option>
+    <option value="fast">Fast (4 MB)</option>
   </select>
   <button data-act="remove">Remove</button>
 </div>
