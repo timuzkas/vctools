@@ -2,29 +2,51 @@ const root = document.querySelector('[data-tool="bg-remover"]');
 const $ = (s) => root.querySelector(s);
 
 const ORT_BASE = new URL("../../vendor/ort/", import.meta.url).href;
-const MODEL_URL = new URL("../../models/u2netp.onnx", import.meta.url).href;
-const SIZE = 320;
-const MEAN = [0.485, 0.456, 0.406];
-const STD = [0.229, 0.224, 0.225];
 
-let ort, session;
+// Each model differs in input size and normalization.
+const HF = "https://huggingface.co/briaai/RMBG-1.4/resolve/2ceba5a5efaec153162aedea169f76caf9b46cf8/onnx/";
+const MODELS = {
+  fast: {
+    url: new URL("../../models/u2netp.onnx", import.meta.url).href,
+    label: "~16 MB",
+    size: 320,
+    mean: [0.485, 0.456, 0.406],
+    std: [0.229, 0.224, 0.225],
+    scaleByMax: true,
+  },
+  quality: {
+    url: HF + "model_quantized.onnx",
+    label: "~60 MB",
+    size: 1024,
+    mean: [0.5, 0.5, 0.5],
+    std: [1, 1, 1],
+    scaleByMax: false,
+  },
+};
 
-async function loadModel() {
-  if (session) return;
-  ort = await import(ORT_BASE + "ort.wasm.min.mjs");
-  ort.env.wasm.wasmPaths = ORT_BASE;
-  ort.env.wasm.numThreads = 1;
-  session = await ort.InferenceSession.create(MODEL_URL, { executionProviders: ["wasm"] });
+let ort;
+const sessions = {}; // cached per model, so switching back is instant
+
+async function loadModel(key) {
+  if (!ort) {
+    ort = await import(ORT_BASE + "ort.wasm.min.mjs");
+    ort.env.wasm.wasmPaths = ORT_BASE;
+    ort.env.wasm.numThreads = 1;
+  }
+  return (sessions[key] ??= await ort.InferenceSession.create(MODELS[key].url, { executionProviders: ["wasm"] }));
 }
 
-function toTensor(bitmap) {
+function toTensor(bitmap, { size: SIZE, mean: MEAN, std: STD, scaleByMax }) {
   const c = new OffscreenCanvas(SIZE, SIZE);
   const ctx = c.getContext("2d");
   ctx.drawImage(bitmap, 0, 0, SIZE, SIZE);
   const { data } = ctx.getImageData(0, 0, SIZE, SIZE);
 
-  let max = 1;
-  for (let i = 0; i < data.length; i += 4) max = Math.max(max, data[i], data[i + 1], data[i + 2]);
+  let max = 255;
+  if (scaleByMax) {
+    max = 1;
+    for (let i = 0; i < data.length; i += 4) max = Math.max(max, data[i], data[i + 1], data[i + 2]);
+  }
 
   const plane = SIZE * SIZE;
   const out = new Float32Array(3 * plane);
@@ -36,7 +58,7 @@ function toTensor(bitmap) {
   return new ort.Tensor("float32", out, [1, 3, SIZE, SIZE]);
 }
 
-function applyMask(bitmap, pred) {
+function applyMask(bitmap, pred, SIZE) {
   let min = Infinity, max = -Infinity;
   for (const v of pred) { if (v < min) min = v; if (v > max) max = v; }
   const range = max - min || 1;
@@ -74,13 +96,15 @@ async function run() {
   const btn = $('[data-act="remove"]');
   btn.disabled = true;
   try {
-    $("[data-out]").textContent = session ? "Processing..." : "Loading model (~16 MB)...";
-    await loadModel();
+    const key = $("[data-model]").value;
+    const model = MODELS[key];
+    $("[data-out]").textContent = sessions[key] ? "Processing..." : `Loading model (${model.label}, cached after first use)...`;
+    const session = await loadModel(key);
     $("[data-out]").textContent = "Processing...";
 
     const bitmap = await createImageBitmap(file);
-    const results = await session.run({ [session.inputNames[0]]: toTensor(bitmap) });
-    const blob = await applyMask(bitmap, results[session.outputNames[0]].data);
+    const results = await session.run({ [session.inputNames[0]]: toTensor(bitmap, model) });
+    const blob = await applyMask(bitmap, results[session.outputNames[0]].data, model.size);
 
     const url = URL.createObjectURL(blob);
     $("[img-out]").src = url;

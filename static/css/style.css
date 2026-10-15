@@ -58,6 +58,7 @@ hr {
 /* default controls */
 button,
 input[type="file"],
+select,
 textarea {
   font-family: var(--font-mono);
   font-size: var(--text-base);
@@ -81,6 +82,13 @@ button:hover {
 button:disabled {
   opacity: 0.5;
   cursor: default;
+}
+
+select {
+  background-color: var(--surface-2);
+  color: var(--text-muted);
+  padding: 0.55em 0.8em;
+  cursor: pointer;
 }
 
 input[type="file"] {
