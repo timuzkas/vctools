@@ -63,7 +63,7 @@ body > a, p, h1, h2, h3 {
 
 
 
-.sidebar > div.horiz {
+div.horiz {
   display: flex;
   flex-direction: row;
 
@@ -73,14 +73,15 @@ body > a, p, h1, h2, h3 {
 }
 
 
-.sidebar > div.vert {
+div.vert {
   display: flex;
   flex-direction: column;
 
   justify-content: center;
+}
 
+.sidebar > div.vert {
   padding-top: 5%;
-  
 }
 
 .sidebar > div > a {
@@ -161,8 +162,18 @@ body > a, p, h1, h2, h3 {
   background-color: #232323;
   padding: 1rem;
   text-decoration: none;
+  transition: background-color 0.2s ease, opacity 0.2s, transform 0.2s, display .2s allow-discrete;
+}
 
-  transition: background-color 0.2s ease;
+@starting-style {
+  .tool-card { opacity: 0; transform: scale(.95); }
+}
+
+.tool-card.filtered {
+  opacity: 0;
+  display: none;
+  transform: scale(.95);
+  pointer-events: none;
 }
 
 .tool-card h3 {
@@ -247,6 +258,28 @@ pre {
   font-family: ui-monospace, monospace;
 }
 
+.index p.desc {
+  margin-right: auto;
+}
+
+.index p.search {
+  color: #3D3D3D;
+  font-style: italic;
+  transition: all 0.2s ease;
+}
+
+.index p.search.active {
+  color: #5C5C5C;
+  font-style: normal;
+}
+
+
 .title {
   font-size: 2.4rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tool-card {
+    transition: none;
+  }
 }

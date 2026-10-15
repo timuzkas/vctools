@@ -1,6 +1,9 @@
 {{ define "main" }}
   <h1>{{ .Title }}</h1>
-  <p class="desc">{{ .Params.description }}</p>
+  <div class="horiz index"> 
+    <p class="desc">{{ .Params.description }}</p>
+    <p class="search"> Start typing to search... </p>
+  </div>
   {{ .Content }}
 
   <hr class="divider"></hr>
@@ -12,4 +15,6 @@
         <p>{{ .Params.description }}</p>
       </a>
     {{ end }}
+  </div>
+  <script src="{{ "js/search.js" | relURL }}" defer></script>
 {{ end }}
