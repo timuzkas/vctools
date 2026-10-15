@@ -77,6 +77,17 @@ body > a, p, h1, h2, h3 {
   margin-top: auto;
 }
 
+.sidebar a.suggest {
+  color: #575757;
+  font-style: italic;
+  font-size: 0.8rem;
+  text-align: center;
+
+  margin-top: 20px;
+  
+  width: 100%;
+}
+
 .menu-btn {
   display: none;
   transition: left 0.2s ease;
