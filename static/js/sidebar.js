@@ -1,5 +1,5 @@
 const btn = document.querySelector(".menu-btn");
-const bar = document.querySelector(".sidebar");
+const bar = document.querySelector("aside");
 btn.addEventListener("click", () => {
   const open = bar.classList.toggle("open");
   btn.classList.toggle("open", open);

@@ -1,0 +1,60 @@
+main > header > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+main > header > div > p:first-child { margin-right: auto; }
+
+.search {
+  font-family: inherit;
+  font-style: italic;
+  color: var(--surface-2);
+  transition: all 0.2s ease;
+}
+
+.search.active {
+  font-style: normal;
+  color: var(--text-dim);
+}
+
+.tool-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+}
+
+.tool-card {
+  background-color: var(--surface);
+  padding: 1rem;
+  text-decoration: none;
+  transition: background-color 0.2s ease, opacity 0.2s, transform 0.2s, display 0.2s allow-discrete;
+}
+
+.tool-card:hover { background-color: var(--surface-2); }
+
+.tool-card.filtered {
+  opacity: 0;
+  display: none;
+  transform: scale(0.95);
+  pointer-events: none;
+}
+
+@starting-style {
+  .tool-card { opacity: 0; transform: scale(0.95); }
+}
+
+.tool-card h3 {
+  color: var(--text-soft);
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  margin: 0;
+}
+
+.tool-card p {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  margin-top: 0.8rem;
+}

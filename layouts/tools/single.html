@@ -1,12 +1,17 @@
+{{ define "head" }}
+  {{ with .Resources.Get "tool.css" }}<link rel="stylesheet" href="{{ .RelPermalink }}">{{ end }}
+{{ end }}
+
 {{ define "main" }}
-  <h1 class="title">{{ .Title }}</h1>
-  <p class="desc">{{ .Params.description }}</p>
-  <hr class="divider"></hr>
+  <header>
+    <h1>{{ .Title }}</h1>
+    <p>{{ .Params.description }}</p>
+  </header>
+  <hr>
   <section data-tool="{{ .File.ContentBaseName }}">
     {{ .Content }}
   </section>
   {{ with .Resources.Get "tool.js" }}
     <script type="module" src="{{ .RelPermalink }}"></script>
   {{ end }}
-  {{ with .Resources.Get "tool.css" }}<link rel="stylesheet" href="{{ .RelPermalink }}">{{ end }}
 {{ end }}

@@ -1,0 +1,19 @@
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space);
+}
+
+.controls button { margin: 0; }
+
+[data-out] { margin-bottom: 0; }
+
+img[img-out] {
+  display: block;
+  max-width: 100%;
+  max-height: 60vh;
+  margin-top: 1rem;
+  background: repeating-conic-gradient(#2A2A2A 0% 25%, #1C1C1C 0% 50%) 50% / 20px 20px;
+}
+
+img[img-out]:not([src]) { display: none; }

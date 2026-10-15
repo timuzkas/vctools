@@ -1,21 +1,19 @@
-<aside class="sidebar">
-  <div class="horiz">
-    <h3> verycooltools </h3>
-    <a href="https://github.com/timuzkas/vctools/" class="icon">{{ with resources.Get "icons/github.svg" }}{{ .Content | safeHTML }}{{ end }}</a>
-  </div>
+<aside>
+  <header>
+    <h3>verycooltools</h3>
+    <a href="https://github.com/timuzkas/vctools/" aria-label="GitHub">{{ with resources.Get "icons/github.svg" }}{{ .Content | safeHTML }}{{ end }}</a>
+  </header>
 
-  <span class="divider"></span>
-  
-  <div class="vert">
+  <hr>
+
+  <nav>
     <a href="{{ .Site.Home.RelPermalink }}" {{ if .IsHome }}aria-current="page"{{ end }}>Home</a>
     {{ $page := . }}
     {{ range (site.GetPage "/tools").Pages.ByWeight }}
       <a href="{{ .RelPermalink }}" {{ if eq .RelPermalink $page.RelPermalink }}aria-current="page"{{ end }}>{{ .Title }}</a>
     {{ end }}
-    <a class="suggest" href="https://github.com/timuzkas/vctools/issues/new?title=Suggestion:%20&labels=suggestion&body=What%20would%20you%20like%20to%20see%3F%0A%0A">
-      Suggest a tool
-    </a>
-  </div>
+    <a rel="external" href="https://github.com/timuzkas/vctools/issues/new?title=Suggestion:%20&labels=suggestion&body=What%20would%20you%20like%20to%20see%3F%0A%0A">Suggest a tool</a>
+  </nav>
 
-  <p>all of the tools require javascript, note that. however we do not collect any information, this site is purely client side too. </p>
+  <p>all of the tools require javascript, note that. however we do not collect any information, this site is purely client side too.</p>
 </aside>

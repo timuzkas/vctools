@@ -11,7 +11,7 @@ weight: 10
   <button data-act="decode">Decode</button>
 </div>
 <p> results: </p>
-<pre data-out></pre>
 <button data-act="copy">Copy</button>
-<p class="error" data-err></p>
+<pre data-out></pre>
+<p data-err></p>
 

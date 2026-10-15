@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ .Title }}</title>
     <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+    <link rel="stylesheet" href="{{ "css/layout.css" | relURL }}">
+    {{ block "head" . }}{{ end }}
   </head>
   <body>
     <button class="menu-btn" aria-label="Menu" aria-expanded="false">></button>
-    <div class="site-layout">
-      {{ partial "ui/sidebar.html" . }}
+    {{ partial "ui/sidebar.html" . }}
 
-      <main>
-        {{ block "main" . }}{{ end }}
-      </main>
-    </div>
+    <main>
+      {{ block "main" . }}{{ end }}
+    </main>
     <script src="{{ "js/sidebar.js" | relURL }}" defer></script>
   </body>
 </html>

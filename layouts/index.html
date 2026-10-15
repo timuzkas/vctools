@@ -1,15 +1,21 @@
+{{ define "head" }}
+  <link rel="stylesheet" href="{{ "css/home.css" | relURL }}">
+{{ end }}
+
 {{ define "main" }}
-  <h1>{{ .Title }}</h1>
-  <div class="horiz index"> 
-    <p class="desc">{{ .Params.description }}</p>
-    <p class="search"> Start typing to search... </p>
-  </div>
+  <header>
+    <h1>{{ .Title }}</h1>
+    <div>
+      <p>{{ .Params.description }}</p>
+      <p class="search">Start typing to search...</p>
+    </div>
+  </header>
   {{ .Content }}
 
-  <hr class="divider"></hr>
+  <hr>
 
   <div class="tool-grid">
-    {{ range (site.GetPage "/tools").Pages.ByWeight}}
+    {{ range (site.GetPage "/tools").Pages.ByWeight }}
       <a class="tool-card" href="{{ .RelPermalink }}">
         <h3>{{ .Title }}</h3>
         <p>{{ .Params.description }}</p>
