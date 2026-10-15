@@ -13,6 +13,7 @@ weight: 10
   </select>
   <button data-act="remove">Remove</button>
 </div>
+<p class="notice">* This model isn't hosted by us.</p>
 <p data-out></p>
 <img img-out alt="Result">
 <button data-dl data-act="download" data-filename="no-bg.png" hidden>Download PNG</button>

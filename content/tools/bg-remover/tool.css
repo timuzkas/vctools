@@ -4,6 +4,15 @@
   gap: var(--space);
 }
 
+p.notice {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+
+p.notice.hidden {
+  display: none;
+}
+
 .controls button { margin: 0; }
 
 [data-out] { margin-bottom: 0; }

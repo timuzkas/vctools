@@ -135,3 +135,18 @@ root.addEventListener("click", (e) => {
     setTimeout(() => URL.revokeObjectURL(url), 1000);
   }
 });
+
+$("[data-model]").addEventListener('change', (e) => {
+  if ($("[data-model]").value === "quality") {
+    $("p.notice").classList.toggle("hidden", false);
+  } else {
+     $("p.notice").classList.toggle("hidden", true);
+  }
+});
+
+// ran on loading
+if ($("[data-model]").value === "quality") {
+  $("p.notice").classList.toggle("hidden", false);
+} else {
+   $("p.notice").classList.toggle("hidden", true);
+}
