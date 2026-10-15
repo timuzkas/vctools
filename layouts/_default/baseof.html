@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ .Title }}</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
   </head>
   <body>
     <button class="menu-btn" aria-label="Menu" aria-expanded="false">></button>
@@ -15,6 +15,6 @@
         {{ block "main" . }}{{ end }}
       </main>
     </div>
-    <script src="/js/sidebar.js" defer></script>
+    <script src="{{ "js/sidebar.js" | relURL }}" defer></script>
   </body>
 </html>
