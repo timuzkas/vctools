@@ -1,5 +1,8 @@
 const label = document.querySelector("p.search");
-const cards = document.querySelectorAll(".tool-card");
+const categories = document.querySelectorAll("[data-category]");
+
+const everythingHiddenLabel = document.querySelector(".allHiddenLabel");
+everythingHiddenLabel.hidden = true;
 
 const labelPlaceholder = label.textContent;
 let query = "";
@@ -8,9 +11,20 @@ function render() {
   const q = query.toLowerCase();
   label.textContent = query || labelPlaceholder;
   label.classList.toggle("active", query !== "");
-  cards.forEach((card) => {
-    card.classList.toggle("filtered", !card.textContent.toLowerCase().includes(q));
+  categories.forEach((category) => {
+    const cards = category.querySelectorAll(".tool-card");
+    cards.forEach((card) => {
+      card.classList.toggle("filtered", !card.textContent.toLowerCase().includes(q));
+    });
+
+    const allHidden = [...cards].every(c => c.classList.contains("filtered"));
+    category.hidden = allHidden;
   });
+
+  const allCatHidden = [...categories].every(c => c.hidden);
+  everythingHiddenLabel.hidden = !allCatHidden;
+  
+  
 }
 
 document.addEventListener("keydown", e => {

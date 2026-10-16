@@ -1,4 +1,5 @@
 {{ define "head" }}
+  <link rel="stylesheet" href="{{ "css/tools.css" | relURL }}">
   {{ with .Resources.Get "tool.css" }}<link rel="stylesheet" href="{{ .RelPermalink }}">{{ end }}
 {{ end }}
 

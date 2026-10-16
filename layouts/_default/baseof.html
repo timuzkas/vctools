@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ "css/layout.css" | relURL }}">
     {{ block "head" . }}{{ end }}
   </head>
-  <body>
+  <body {{ if .IsHome }}data-home{{ end }}>
     <button class="menu-btn" aria-label="Menu" aria-expanded="false">></button>
     {{ partial "ui/sidebar.html" . }}
 
@@ -16,5 +16,6 @@
       {{ block "main" . }}{{ end }}
     </main>
     <script src="{{ "js/sidebar.js" | relURL }}" defer></script>
+    <script src="{{ "js/hotkeys.js" | relURL }}" defer></script>
   </body>
 </html>

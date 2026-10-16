@@ -1,7 +1,7 @@
 ---
 title: JSON Formatter
 description: Prettify and validate JSON
-category: converters
+category: encoding
 weight: 10
 ---
 
@@ -10,8 +10,9 @@ weight: 10
   <button data-act="format">Format</button>
   <button data-act="minify">Minify</button>
 </div>
-<p> results: </p>
-<button data-act="copy">Copy</button>
+<div class="result-bar">
+  <p class="larger"> results: </p>
+  <button data-act="copy">Copy</button>
+</div>
 <pre data-out></pre>
 <p data-err></p>
-

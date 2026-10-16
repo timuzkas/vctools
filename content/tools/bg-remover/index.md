@@ -1,7 +1,7 @@
 ---
 title: BG remover
 description: Remove image background
-category: transforms
+category: image
 weight: 10
 ---
 
@@ -14,7 +14,10 @@ weight: 10
   <button data-act="remove">Remove</button>
 </div>
 <p class="notice">* This model isn't hosted by us.</p>
+<div class="result-bar">
+  <p class="larger"> results: </p>
+  <button data-dl data-act="download" data-filename="no-bg.png">Download PNG</button>
+</div>
 <p data-out></p>
-<img img-out alt="Result">
-<button data-dl data-act="download" data-filename="no-bg.png" hidden>Download PNG</button>
 <p data-err></p>
+<img img-out alt="Result">

@@ -1,7 +1,7 @@
 ---
 title: Base64
 description: Encode and Decode base64 strings.
-category: converters
+category: encoding
 weight: 10
 ---
 
@@ -10,8 +10,10 @@ weight: 10
   <button data-act="encode">Encode</button>
   <button data-act="decode">Decode</button>
 </div>
-<p> results: </p>
-<button data-act="copy">Copy</button>
+<div class="result-bar">
+  <p class="larger"> results: </p>
+  <button data-act="copy">Copy</button>
+</div>
 <pre data-out></pre>
 <p data-err></p>
 

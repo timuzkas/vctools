@@ -150,3 +150,14 @@ if ($("[data-model]").value === "quality") {
 } else {
    $("p.notice").classList.toggle("hidden", true);
 }
+
+document.addEventListener("paste", (e) => {
+  const file = [...e.clipboardData.files].find(f => f.type.startsWith("image/"));
+  if (!file) return;
+
+  const dataTransfer = new DataTransfer;
+  dataTransfer.items.add(file);
+  $("[data-in]").files = dataTransfer.files;
+
+  run();
+});

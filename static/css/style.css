@@ -41,6 +41,10 @@ p {
   font-size: var(--text-base);
 }
 
+p.larger {
+  font-size: var(--text-lg);
+}
+
 /* default page title, description */
 main > header p {
   font-family: var(--font-mono);
@@ -110,6 +114,31 @@ input[type="file"]::file-selector-button {
 
 input[type="file"]::file-selector-button:hover {
   background-color: var(--surface-hover);
+}
+
+input[type="range"] { accent-color: var(--text-muted); }
+
+input[type="color"] {
+  appearance: none;
+  background: var(--surface);
+  border: 0;
+  padding: 0.2rem;
+  width: 3rem;
+  height: 2rem;
+  cursor: pointer;
+}
+input[type="color"]::-webkit-color-swatch-wrapper { padding: 0; }
+input[type="color"]::-webkit-color-swatch { border: 0; }
+input[type="color"]::-moz-color-swatch { border: 0; }
+
+label {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
 }
 
 textarea {

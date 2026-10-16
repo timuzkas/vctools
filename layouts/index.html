@@ -12,15 +12,21 @@
   </header>
   {{ .Content }}
 
-  <hr>
-
-  <div class="tool-grid">
-    {{ range (site.GetPage "/tools").Pages.ByWeight }}
-      <a class="tool-card" href="{{ .RelPermalink }}">
-        <h3>{{ .Title }}</h3>
-        <p>{{ .Params.description }}</p>
-      </a>
+  <div class="content">
+    {{ range (site.GetPage "/tools").Pages.GroupByParam "category" }}
+      <div data-category>
+        <div class="category-divider"><h3> {{.Key}} </h3><hr></div>
+        <div class="tool-grid">
+          {{ range .Pages.ByWeight }}
+            <a class="tool-card" href="{{ .RelPermalink }}">
+              <h3>{{ .Title }}</h3>
+              <p>{{ .Params.description }}</p>
+            </a>
+          {{ end }}
+        </div>
+      </div>
     {{ end }}
+    <p class="allHiddenLabel">Well, there's nothing quite like your query over here...</p>
   </div>
   <script src="{{ "js/search.js" | relURL }}" defer></script>
 {{ end }}

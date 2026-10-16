@@ -20,6 +20,8 @@ main > header > div > p:first-child { margin-right: auto; }
   color: var(--text-dim);
 }
 
+
+
 .tool-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -57,4 +59,24 @@ main > header > div > p:first-child { margin-right: auto; }
   font-family: var(--font-mono);
   font-size: var(--text-sm);
   margin-top: 0.8rem;
+}
+
+.category-divider {
+  display: flex;
+  flex-direction: row;
+
+  gap: 2rem;
+
+  width: 100%;
+}
+
+.category-divider > hr {
+  width: 100%;
+}
+
+p.allHiddenLabel {
+  color: var(--text-dim);
+  font-style: italic;
+  text-align: center;
+  width: 100%;
 }

@@ -9,8 +9,10 @@
   <nav>
     <a href="{{ .Site.Home.RelPermalink }}" {{ if .IsHome }}aria-current="page"{{ end }}>Home</a>
     {{ $page := . }}
-    {{ range (site.GetPage "/tools").Pages.ByWeight }}
-      <a href="{{ .RelPermalink }}" {{ if eq .RelPermalink $page.RelPermalink }}aria-current="page"{{ end }}>{{ .Title }}</a>
+    {{ range (site.GetPage "/tools").Pages.ByWeight.GroupByParam "category" }}
+      {{ range .Pages }}
+        <a href="{{ .RelPermalink }}" {{ if eq .RelPermalink $page.RelPermalink }}aria-current="page"{{ end }}>{{ .Title }}</a>
+      {{ end }}
     {{ end }}
     <a rel="external" href="https://github.com/timuzkas/vctools/issues/new?title=Suggestion:%20&labels=suggestion&body=What%20would%20you%20like%20to%20see%3F%0A%0A">Suggest a tool</a>
   </nav>
