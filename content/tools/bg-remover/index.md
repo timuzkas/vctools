@@ -13,7 +13,7 @@ weight: 10
   </select>
   <button data-act="remove">Remove</button>
 </div>
-<p class="notice">* This model isn't hosted by us.</p>
+<p class="notice">* This model isn't hosted by us, however the removal is still done localy.</p>
 <div class="result-bar">
   <p class="larger"> results: </p>
   <button data-dl data-act="download" data-filename="no-bg.png">Download PNG</button>

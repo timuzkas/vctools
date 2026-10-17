@@ -11,6 +11,7 @@
   --text-muted: #8A8A8A;
   --text-dim: #5C5C5C;
   --error: #FF6B6B;
+  --success: #00E813;
 
   /* typografy */
   --font-mono: ui-monospace, monospace;

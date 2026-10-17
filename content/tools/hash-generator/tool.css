@@ -1,0 +1,11 @@
+textarea.optional {
+  background-color: var(--surface);
+}
+
+p.ok {
+  color: var(--success);
+}
+
+p.bad {
+  color: var(--error);
+}
